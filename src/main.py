@@ -1,8 +1,10 @@
-from textnode import TextNode, TextType
+from copy_static import copy_static_to_public
 
 
 def main():
-    textnode = TextNode("I will get hired", TextType.LINK, "https://www.boot.dev")
-    print(textnode)
+    source_path = "./static"
+    destination_path = "./public"
+    copying_operation = copy_static_to_public(source_path, destination_path)
+    print(copying_operation)
 
 main()
