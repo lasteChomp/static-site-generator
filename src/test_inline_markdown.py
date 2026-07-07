@@ -188,3 +188,13 @@ class TestInlineMarkdown(unittest.TestCase):
             ],
             nodes
         )
+
+    def test_text_to_textnodes_image(self):
+        image = "![JRR Tolkien sitting](/images/tolkien.png)"
+        nodes = text_to_textnodes(image)
+        self.assertEqual(
+            [
+                TextNode("JRR Tolkien sitting", TextType.IMAGE, "/images/tolkien.png")
+            ],
+            nodes
+        )
