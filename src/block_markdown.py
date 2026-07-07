@@ -85,8 +85,7 @@ def block_to_parent_node(block: str) -> ParentNode:
         case BlockType.QUOTE:
             block = block.replace("> ", "").replace(">", "").replace("\n", " ")
             children = text_to_children(block)
-            quote_p = ParentNode(tag="p", children=children)
-            return ParentNode(tag="blockquote", children=[quote_p])
+            return ParentNode(tag="blockquote", children=children)
         case BlockType.UNORDERED_LIST:
             block = block.replace("- ", "")
             lines = block.splitlines()
