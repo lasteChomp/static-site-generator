@@ -19,9 +19,14 @@ def generate_page(from_path: str, template_path: str, dest_path: str) -> str:
         source_contents_html = markdown_to_html_node(source_contents).to_html()
         source_contents_title = extract_title(source_contents)
         complete_html = template_contents.replace("{{ Title }}", source_contents_title).replace("{{ Content }}", source_contents_html)
+        dest_dir_path = os.path.dirname(dest_path)
+        if dest_dir_path != "":
+            os.makedirs(dest_dir_path, exist_ok=True)
         with open(dest_path, "w") as f:
             f.write(complete_html)
         return f"Generated page successfully from {from_path} to {dest_path} using {template_path}"
     except FileNotFoundError as error:
         return f"File not found: {error.filename}"
+    except ValueError as error:
+        return f"{error}"
     
