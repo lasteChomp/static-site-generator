@@ -1,14 +1,13 @@
+import os
 from block_markdown import markdown_to_html_node
 
 
 def extract_title(markdown: str) -> str:
-    lines = markdown.split("\n\n")
-    title = ""
+    lines = markdown.split("\n")
     for line in lines:
         if line.startswith("# "):
-            title += line[2:].strip()
-            break
-    return title
+            return line[2:].strip()
+    raise ValueError("no title found")
 
 def generate_page(from_path: str, template_path: str, dest_path: str) -> str:
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
