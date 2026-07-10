@@ -29,4 +29,16 @@ def generate_page(from_path: str, template_path: str, dest_path: str) -> str:
         return f"File not found: {error.filename}"
     except ValueError as error:
         return f"{error}"
+
+
+def generate_pages_recursive(dir_path_content: str, template_path: str, dest_dir_path: str):
+    dir_path_contents = os.listdir(dir_path_content)
+    for path in dir_path_contents:
+        dir_path_contents_path = os.path.join(dir_path_content, path)
+        dest_dir_path_contents = os.path.join(dest_dir_path, path)
+        if os.path.isfile(dir_path_contents_path) and dir_path_contents_path.endswith(".md"):
+            dest_dir_path_contents = dest_dir_path_contents.replace(".md", ".html")
+            generate_page(dir_path_contents_path, template_path, dest_dir_path_contents)
+        if os.path.isdir(dir_path_contents_path):
+            generate_pages_recursive(dir_path_contents_path, template_path, dest_dir_path_contents)
     
