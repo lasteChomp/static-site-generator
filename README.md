@@ -19,10 +19,13 @@ A simple static site generator built in Python that converts Markdown files into
 ```
 ├── content/         # Markdown source files
 ├── static/          # Images, CSS, and other static assets
+├── docs/            # Built site output, deployed via GitHub Pages
 ├── template.html    # HTML template used to wrap generated pages
 ├── src/             # Python source code
 └── main.sh          # Script to build and run the site
 ```
+
+> **Note:** The `docs/` folder contains the generated static site and is used as the source for GitHub Pages deployment. To update the live site, rebuild the project and commit the changes in `docs/`.
 
 You can delete and add your own structure and your own markdown files into the content folder. This repo uses a Lord of the Rings themed contents.
 
